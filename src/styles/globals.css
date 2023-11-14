@@ -1,3 +1,8 @@
+/* css file imports */
+@import url(./components/footer.css);
+@import url(./components/header.css);
+@import url(./components/board.css);
+/* CSS resets */
 *,
 *::after,
 *::before {
@@ -7,4 +12,31 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+/* layout CSS */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 1200px;
+  margin: auto;
+}
+
+header,
+footer {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 100px;
 }

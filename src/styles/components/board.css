@@ -1,0 +1,15 @@
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-area {
+}
+
+.monster-area {
+}
+
+.action-area {
+  grid-column: 1 / -1;
+  text-align: center;
+}

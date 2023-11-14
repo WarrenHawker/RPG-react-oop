@@ -1,8 +1,14 @@
+import Board from './components/Board';
+import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
+
 const App = () => {
   return (
-    <main>
-      <h1>RPG Game</h1>
-    </main>
+    <div className="page">
+      <Header />
+      <Board />
+      <Footer />
+    </div>
   );
 };
 
