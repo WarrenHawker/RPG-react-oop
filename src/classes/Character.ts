@@ -3,60 +3,54 @@
   Provides base for both Hero and Monster characters
 */
 
+export type CharacterType = 'hero' | 'monster';
+import { nanoid } from 'nanoid';
+
 export default class Character {
-  //private class properties
-  #health: number;
-  #image: string;
-  #attack: number;
-  #name: string;
-  #isDead: boolean = false;
+  //public properties
+  public id: string;
+  public maxHealth: number;
+  public attack: number;
+  public type: CharacterType;
+  public hasActed: boolean;
+  public name: string;
+  public speed: number;
+  public target: string | null;
 
-  constructor(health: number, image: string, attack: number, name: string) {
-    this.#health = health;
-    this.#image = image;
-    this.#attack = attack;
-    this.#name = name;
+  //private properties
+  private _isDead: boolean;
+  public _currentHealth: number;
+
+  //constructor
+  constructor(
+    name: string,
+    type: CharacterType,
+    health: number,
+    attack: number,
+    speed: number
+  ) {
+    this.id = nanoid();
+    this.name = name;
+    this.maxHealth = health;
+    this._currentHealth = health;
+    this._isDead = false;
+    this.type = type;
+    this.attack = attack;
+    this.hasActed = false;
+    this.speed = speed;
+    this.target = null;
   }
 
-  //getter methods for private properties
-  get health() {
-    return this.#health;
+  //public methods
+  takeDamage(value: number) {
+    this._currentHealth -= value;
+    this.checkIsDead();
   }
 
-  get image() {
-    return this.#image;
-  }
-
-  get attack() {
-    return this.#attack;
-  }
-
-  get name() {
-    return this.#name;
-  }
-
-  get isDead() {
-    return this.#isDead;
-  }
-
-  //setter methods for private properties
-  set health(value) {
-    this.#health = value;
-  }
-
-  set image(value) {
-    this.#image = value;
-  }
-
-  set attack(value) {
-    this.#attack = value;
-  }
-
-  set name(value) {
-    this.#name = value;
-  }
-
-  set isDead(value) {
-    this.#isDead = value;
-  }
+  //private methods
+  checkIsDead = () => {
+    if (this._currentHealth <= 0) {
+      this._isDead = true;
+    }
+  };
 }
